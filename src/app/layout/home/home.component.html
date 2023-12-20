@@ -1,0 +1,13 @@
+<div class="d-flex btn-login-home">
+    <h3>{{isShowDashboard ?'Already logged in...': 'Waiting to log in here ....'}}</h3>
+
+    <mat-progress-bar mode="indeterminate" class="bar-login"></mat-progress-bar>
+    <button mat-button (click)="openDialog()" mat-raised-button color="accent" class="px-3 py-2 mt-5"
+        *ngIf="!isShowDashboard">
+        Login Now !!!
+    </button>
+    <button mat-button (click)="openDashboard()" mat-raised-button color="accent" class="px-3 py-2 mt-5"
+        *ngIf="isShowDashboard">
+        Dashboard Now !!!
+    </button>
+</div>

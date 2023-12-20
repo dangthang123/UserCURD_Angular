@@ -1,0 +1,100 @@
+<div class="board-user">
+    <div class="container">
+        <div class="d-flex justify-content-between align-center align-items-center pt-4">
+            <a routerLink='/add-new-user' *ngIf="dataProfile.permission==='admin'">
+                <button mat-mini-fab color="primary" aria-label="button add " matTooltip="Add User" class="mt-3">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </a>
+
+            <div class="search-hero">
+                <input class="form-control" type="text" name="search" autocomplete="off"
+                    placeholder="&#61442;  Start searching " (input)="search($event)">
+                >
+            </div>
+
+            <div class="btn-left bg-secondary">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item disabled>
+                        <mat-icon>face</mat-icon>
+                        <span>{{dataProfile.firstname}}</span>
+                    </button>
+                    <button mat-menu-item (click)="handleLogout()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+
+        <table mat-table [dataSource]="currentPageData" class="mat-elevation-z8 mt-4 rounded">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fistName">
+                <th mat-header-cell *matHeaderCellDef> Fist Name </th>
+                <td mat-cell *matCellDef="let element" class="text-capitalize"> {{element.firstname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastName">
+                <th mat-header-cell *matHeaderCellDef> Last Name </th>
+                <td mat-cell *matCellDef="let element" class="text-capitalize"> {{element.lastname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sex">
+                <th mat-header-cell *matHeaderCellDef> Sex </th>
+                <td mat-cell *matCellDef="let element" class="text-capitalize"> "{{element.sex}}"</td>
+            </ng-container>
+
+            <ng-container matColumnDef="dob">
+                <th mat-header-cell *matHeaderCellDef> Day Of Birth </th>
+                <td mat-cell *matCellDef="let element"> {{element.dob| date:'dd/MM/YYYY'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="passWord">
+                <th mat-header-cell *matHeaderCellDef> Password </th>
+                <td mat-cell *matCellDef="let element"> {{element.password}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="permission">
+                <th mat-header-cell *matHeaderCellDef> Permission </th>
+                <td mat-cell *matCellDef="let element"> "{{element.permission}}" </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-mini-fab color="warn" aria-label="button delete " matTooltip="Delete User"
+                        class="btn-action mx-1" (click)="isOpenPopup(element.id)"
+                        *ngIf="dataProfile.permission==='admin'">
+                        <mat-icon class="icon ">delete</mat-icon>
+                    </button>
+                    <a routerLink='/add-new-user/{{element.id}}'>
+                        <button mat-mini-fab color="accent" aria-label="button edit" matTooltip="Edit User"
+                            class="btn-action" (click)="handleOnUpdate(element.id)"
+                            *ngIf="dataProfile.permission==='admin'">
+                            <mat-icon class="icon">edit</mat-icon>
+                        </button>
+                    </a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [length]="dataSource.length" [pageSize]="pageSize" [pageIndex]="pageIndex"
+            [pageSizeOptions]="[5, 10, 15, 20   ]" (page)="onChangePaginator($event)" aria-label="Select page">
+        </mat-paginator>
+    </div>
+</div>

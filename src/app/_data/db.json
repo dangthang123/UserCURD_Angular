@@ -1,0 +1,74 @@
+{
+  "user": [
+    {
+      "firstname": "thang",
+      "lastname": "dang",
+      "dob": "2023-12-22T17:00:00.000Z",
+      "email": "a@gmail.com",
+      "password": "Thangtn@1",
+      "sex": "girl",
+      "permission": "user",
+      "id": 4
+    },
+    {
+      "firstname": "tn1",
+      "lastname": "a",
+      "dob": "2023-12-14T17:00:00.000Z",
+      "email": "abc@gmail.com",
+      "password": "Thangtn@1",
+      "sex": "boy",
+      "permission": "admin",
+      "id": 5
+    },
+    {
+      "firstname": "thang",
+      "lastname": "cd",
+      "dob": "2023-12-22T17:00:00.000Z",
+      "email": "a@gmail.com",
+      "password": "Thangtn@1",
+      "sex": "girl",
+      "permission": "user",
+      "id": 6
+    },
+    {
+      "firstname": "csac",
+      "lastname": "csacsac",
+      "dob": "2023-12-15T17:00:00.000Z",
+      "email": "a@gmail.com",
+      "password": "Thangtn@1",
+      "sex": "boy",
+      "permission": "user",
+      "id": 7
+    },
+    {
+      "firstname": "a",
+      "lastname": "a",
+      "dob": "2023-12-29T17:00:00.000Z",
+      "email": "a@gmail.com",
+      "password": "Thangtn@1",
+      "sex": "boy",
+      "permission": "admin",
+      "id": 8
+    },
+    {
+      "firstname": "test",
+      "lastname": "Test",
+      "dob": "2023-12-22T17:00:00.000Z",
+      "email": "a@gmail.com",
+      "password": "Thangtn@1",
+      "sex": "boy",
+      "permission": "user",
+      "id": 9
+    },
+    {
+      "firstname": "Test1",
+      "lastname": "Test2",
+      "dob": "2023-12-22T17:00:00.000Z",
+      "email": "a@gmail.com",
+      "password": "Thangtn@1",
+      "sex": "boy",
+      "permission": "admin",
+      "id": 10
+    }
+  ]
+}

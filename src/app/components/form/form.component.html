@@ -1,0 +1,77 @@
+<div class="container mt-3">
+   <a mat-raised-button routerLink="/dashboard">
+      <mat-icon>arrow_left</mat-icon>
+      Back Dashboard</a>
+   <form class="example-form d-flex flex-column mt-4" [formGroup]="userForm">
+      <mat-form-field class="example-full-width">
+         <mat-label>First Name</mat-label>
+         <input type="text" matInput placeholder="Ex. First" formControlName="firstname">
+         <mat-error *ngIf="userForm.get('firstname')?.hasError('required')">
+            First Name is
+            <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+         <mat-label>Last Name</mat-label>
+         <input type="text" matInput placeholder="Ex. Last Name" formControlName="lastname">
+         <mat-error *ngIf="userForm.get('lastname')?.hasError('required')">
+            Last Name is
+            <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+         <mat-label>Day Of Birth</mat-label>
+         <input matInput [matDatepicker]="picker" formControlName="dob">
+         <mat-hint>MM/DD/YYYY</mat-hint>
+         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+         <mat-datepicker #picker></mat-datepicker>
+         <mat-error *ngIf="userForm.get('dob')?.hasError('required')">
+            Day Of Birth is
+            <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-radio-group class="mt-3" aria-label="Select an option" formControlName="sex">
+         <mat-radio-button value="boy">Boy</mat-radio-button>
+         <mat-radio-button value="girl" class="ms-3">Girl</mat-radio-button>
+         <mat-error *ngIf="userForm.get('sex')?.hasError('required')">Sex is
+            <strong>required</strong></mat-error>
+      </mat-radio-group>
+
+      <mat-form-field class="example-full-width">
+         <mat-label>Email</mat-label>
+         <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email">
+         <mat-error *ngIf="userForm.get('email')?.hasError('email') && !userForm.get('email')?.hasError('required')">
+            Please enter a valid email address</mat-error>
+         <mat-error *ngIf="userForm.get('email')?.hasError('required')">Email is
+            <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+         <mat-label>Password</mat-label>
+         <input type="{{ passwordHidden ? 'password' : 'text' }}" matInput placeholder="Ex. 12345657"
+            formControlName="password">
+         <button mat-icon-button matSuffix (click)="togglePasswordVisibility()"
+            [attr.aria-label]="passwordHidden ? 'Show password' : 'Hide password'">
+            <mat-icon>{{ passwordHidden ? 'visibility' : 'visibility_off' }}</mat-icon>
+         </button>
+         <mat-error *ngIf="userForm.get('password')?.hasError('required')">Password is
+            <strong>required</strong></mat-error>
+         <mat-error *ngIf="userForm.get('password')?.hasError('invalidPassword')">Password should be at least 9
+            characters long, contain special characters, and have at least one uppercase letter.
+         </mat-error>
+      </mat-form-field>
+
+      <mat-label>Permission</mat-label>
+      <mat-radio-group class="mt-3" aria-label="Select an option" formControlName="permission">
+         <mat-radio-button value="admin">Admin</mat-radio-button>
+         <mat-radio-button value="user" class="ms-3">User</mat-radio-button>
+         <mat-error *ngIf="userForm.get('permission')?.hasError('required')">Permission is
+            <strong>required</strong></mat-error>
+      </mat-radio-group>
+
+      <button *ngIf="!isShowEdit" mat-raised-button color="accent" type="submit" class="mt-2"
+         (click)="handleSubmit()">ADD</button>
+      <button *ngIf="isShowEdit" mat-raised-button color="primary" type="submit" class="mt-2"
+         (click)="handleEdit(idUser)">EDIT</button>
+   </form>
+</div>

@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <mat-card>
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-content *ngIf="!isShowContentLogin">
+            <form class="example-form d-flex flex-column mt-4" [formGroup]="loginForm">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="text" matInput placeholder="Ex. a@gmail.com" formControlName="emailLogin">
+                    <mat-error *ngIf="loginForm.get('emailLogin')?.hasError('required')">
+                        Email is
+                        <strong>required</strong></mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input type="{{ passwordHidden ? 'password' : 'text' }}" matInput placeholder="Ex. 123456789"
+                        formControlName="passwordLogin">
+                    <button mat-icon-button matSuffix (click)="togglePasswordVisibility()"
+                        [attr.aria-label]="passwordHidden ? 'Show password' : 'Hide password'">
+                        <mat-icon>{{ passwordHidden ? 'visibility' : 'visibility_off' }}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="loginForm.get('passwordLogin')?.hasError('required')">
+                        Password is
+                        <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button mat-dialog-close color="accent" type="submit" class="mt-2"
+                    (click)="handleLogin()">SUBMIT</button>
+            </form>
+        </mat-card-content>
+        <mat-card-content *ngIf="isShowContentLogin">
+            Login successful
+        </mat-card-content>
+    </mat-card>
+</div>
