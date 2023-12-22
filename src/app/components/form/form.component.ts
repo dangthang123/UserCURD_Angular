@@ -1,10 +1,11 @@
-import { User } from './../../_heplers/interface/user';
+import { User } from '../../_core/interface/user';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CommonService } from 'src/app/_service/common.service';
+import { CommonService } from 'src/app/_core/service/common.service';
 import { ActivatedRoute } from '@angular/router';
-import { passwordValidator } from 'src/app/_heplers/validator/fomatPass.validator';
+import { passwordValidator } from 'src/app/_core/validator/fomatPass.validator';
 import Swal from 'sweetalert2';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-form',
@@ -30,7 +31,6 @@ export class FormComponent implements OnInit {
   })
 
   idUser = this.route.snapshot.params['id'];
-
   ngOnInit(): void {
     this.commonService.getAllUser().subscribe((data: User[]) => {
       const foundUser = data.find(item => item.id == this.idUser);
@@ -54,7 +54,12 @@ export class FormComponent implements OnInit {
 
   handleSubmit() {
     if (this.userForm.valid) {
-      this.commonService.createUser(this.userForm.getRawValue()).subscribe(e => {
+      const token = uuid();
+      const userDataWithToken = {
+        ...this.userForm.getRawValue(),
+        token: token
+      };
+      this.commonService.createUser(userDataWithToken).subscribe(e => {
         // console.log('done');
         Swal.fire({
           icon: "success",
@@ -62,6 +67,8 @@ export class FormComponent implements OnInit {
           text: "Created successfully",
           footer: '<a href="/dashboard">Return Dashboard</a>'
         });
+        console.log(e);
+
       })
     } else {
       // console.log("error");
@@ -75,7 +82,12 @@ export class FormComponent implements OnInit {
 
   handleEdit(id: string) {
     if (this.userForm.valid) {
-      this.commonService.editUser(id, this.userForm.getRawValue()).subscribe(e => {
+      const token = uuid();
+      const userDataWithToken = {
+        ...this.userForm.getRawValue(),
+        token: token
+      };
+      this.commonService.editUser(id, userDataWithToken).subscribe(e => {
         // console.log('done');
         Swal.fire({
           icon: "success",

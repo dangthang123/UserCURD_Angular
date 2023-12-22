@@ -34,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PopupComponent } from './components/popup/popup.component';
 import { LoginComponent } from './layout/login/login.component';
 import { HomeComponent } from './layout/home/home.component';
+import { NotFoundPageComponent } from './layout/not-found-page/not-found-page.component';
 // import { MyCustomPaginatorIntl } from './_heplers/panigator/paginator';
 
 @NgModule({
@@ -44,6 +45,7 @@ import { HomeComponent } from './layout/home/home.component';
     PopupComponent,
     LoginComponent,
     HomeComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,

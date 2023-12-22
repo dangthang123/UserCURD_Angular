@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
-import { TokenService } from 'src/app/_service/token.service';
+import { TokenService } from 'src/app/_core/service/token.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.tokenService.getToken()) {
+    if (this.tokenService.isTokenValid()) {
       this.isShowDashboard = true;
     } else {
       this.isShowDashboard = false;

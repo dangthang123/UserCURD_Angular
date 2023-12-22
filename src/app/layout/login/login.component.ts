@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CommonService } from 'src/app/_service/common.service';
+import { CommonService } from 'src/app/_core/service/common.service';
 import { Router } from '@angular/router';
-import { TokenService } from 'src/app/_service/token.service';
+import { TokenService } from 'src/app/_core/service/token.service';
 import Swal from 'sweetalert2';
 // import 'sweetalert2/src/sweetalert2.scss'
 @Component({
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       this.dataSource = e
     });
 
-    if (this.tokenService.getToken()) {
+    if (this.tokenService.isTokenValid()) {
       this.isShowContentLogin = true;
     } else {
       this.isShowContentLogin = false;
@@ -43,7 +43,18 @@ export class LoginComponent implements OnInit {
 
     if (foundUser) {
       // console.log('Login successful');
-      this.tokenService.saveToken(foundUser);
+      const userToSave = {
+        id: foundUser.id,
+        firstname: foundUser.firstname,
+        lastname: foundUser.lastname,
+        dob: foundUser.dob,
+        permission: foundUser.permission,
+        sex: foundUser.sex,
+        email: foundUser.email,
+        token: foundUser.token,
+      };
+      this.tokenService.saveUser(userToSave)
+      this.tokenService.saveToken(foundUser.token);
       this.router.navigate(['/dashboard']);
       Swal.fire({
         title: "Notification",

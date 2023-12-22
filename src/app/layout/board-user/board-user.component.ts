@@ -1,8 +1,8 @@
 import { Component, NgModule, OnInit } from '@angular/core';
-import { CommonService } from '../../_service/common.service';
+import { CommonService } from '../../_core/service/common.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../../components/popup/popup.component';
-import { TokenService } from 'src/app/_service/token.service';
+import { TokenService } from 'src/app/_core/service/token.service';
 import { PageEvent } from '@angular/material/paginator';
 
 
@@ -37,7 +37,7 @@ export class BoardUserComponent implements OnInit {
   }
 
   private retrieveUserProfile(): void {
-    const token = this.authToken.getToken();
+    const token = this.authToken.getUser();
     if (token) {
       this.dataProfile = JSON.parse(token);
     }

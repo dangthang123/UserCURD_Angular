@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CommonService } from 'src/app/_service/common.service';
+import { CommonService } from 'src/app/_core/service/common.service';
 import Swal from 'sweetalert2';
 
 @Component({

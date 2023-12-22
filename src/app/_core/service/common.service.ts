@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BASE } from '../_heplers/BASE';
-import { User } from '../_heplers/interface/user';
+import { BASE } from '../BASE';
+import { User } from '../interface/user';
 
 @Injectable({
     providedIn: 'root'
